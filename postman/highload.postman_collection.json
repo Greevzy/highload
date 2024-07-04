@@ -1,0 +1,93 @@
+{
+	"info": {
+		"_postman_id": "62aa4d1d-e86e-4256-a678-73fbd773539e",
+		"name": "highload",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "register new user",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n  \"password\": \"test\",\n  \"firstName\": \"Иван\",\n  \"secondName\": \"Иванов\",\n  \"birthdate\": \"2000-01-01\",\n  \"sex\": \"MALE\",\n  \"biography\": \"Тестовая биография\",\n  \"city\": \"Москва\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8080/user/register",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"user",
+						"register"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "login",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n  \"userId\": \"<userId из ответа на регистрацию пользователя>\",\n  \"password\": \"<пароль из запроса на регистрацию пользователя>\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8080/login",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"login"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "get user by id",
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "X-Token",
+						"value": "<токен из ответа на логин пользователя>",
+						"type": "default"
+					}
+				],
+				"url": {
+					"raw": "http://localhost:8080/user/get/<userId из запроса на регистрацию пользователя>",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"user",
+						"get",
+						"<userId из запроса на регистрацию пользователя>"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}
