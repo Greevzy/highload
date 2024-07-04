@@ -1,0 +1,23 @@
+server:
+  port: 8080
+spring:
+  application:
+    name: social-network
+  liquibase:
+    enabled: true
+    change-log: file:./Liquibase/liquibase-changeLog.xml
+
+  jpa:
+    open-in-view: false
+  datasource:
+    url: jdbc:postgresql://localhost:5432/highload
+    username: postgres
+    password: postgres
+
+highload:
+  secure-uri:
+    - "/user/get/*"
+
+logging:
+  level:
+    ru.greevzy.highload: DEBUG
