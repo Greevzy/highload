@@ -14,18 +14,19 @@
 
     <modelVersion>4.0.0</modelVersion>
     <modules>
-        <module>unit1</module>
+        <module>social-network</module>
     </modules>
 
     <groupId>ru.greevzy.highload</groupId>
     <artifactId>highload</artifactId>
 
     <properties>
-        <revision>1.0.0</revision>
+        <revision>1.0.1</revision>
         <generated-sources-path>${project.build.directory}/generated-sources</generated-sources-path>
         <generated-sources-kotlin-path>main/kotlin</generated-sources-kotlin-path>
 
         <java.version>11</java.version>
+        <kotlin.version>1.8.20</kotlin.version>
 
         <spring-boot.version>2.6.3</spring-boot.version>
 
