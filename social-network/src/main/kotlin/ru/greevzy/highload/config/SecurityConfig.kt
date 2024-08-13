@@ -3,7 +3,6 @@ package ru.greevzy.highload.config
 import org.springframework.context.annotation.Configuration
 import org.springframework.http.HttpStatus
 import org.springframework.security.config.annotation.web.builders.HttpSecurity
-import org.springframework.security.config.annotation.web.builders.WebSecurity
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter
 import org.springframework.security.config.http.SessionCreationPolicy
 import org.springframework.security.web.authentication.HttpStatusEntryPoint
@@ -14,9 +13,10 @@ import ru.greevzy.highload.service.UserAuthService
 
 
 @Configuration
-class SecurityConfig(appProperties: AppProperties ,userAuthService: UserAuthService) : WebSecurityConfigurerAdapter() {
+class SecurityConfig(appProperties: AppProperties, userAuthService: UserAuthService) : WebSecurityConfigurerAdapter() {
 
     private val tokenFilter = TokenFilter(appProperties, userAuthService)
+
     override fun configure(httpSecurity: HttpSecurity) {
         httpSecurity
             .csrf().disable()
@@ -30,16 +30,4 @@ class SecurityConfig(appProperties: AppProperties ,userAuthService: UserAuthServ
             .sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS)
             .and().exceptionHandling().authenticationEntryPoint(HttpStatusEntryPoint(HttpStatus.UNAUTHORIZED))
     }
-
-    override fun configure(webSecurity: WebSecurity) {
-        webSecurity.ignoring()
-            .antMatchers(
-                "/actuator/**",
-                "/v3/api-docs/**",
-                "/swagger-resources/**",
-                "/swagger-ui/**",
-                "/webjars/**"
-            )
-    }
-
 }

@@ -89,7 +89,10 @@ class UserController(private val userService: UserService) {
         produces = ["application/json"]
     )
     @SecurityRequirement(name = "X-Token")
-    fun searchUsers(@RequestParam("first_name") firstNamePart: String,@RequestParam("second_name") secondNamePart: String ) {
-//        return userService.searchUsers()
+    fun searchUsers(
+        @RequestParam("first_name") firstNamePart: String,
+        @RequestParam("second_name") secondNamePart: String
+    ): List<UserDTO> {
+        return userService.searchUsers(firstNamePart, secondNamePart)
     }
 }

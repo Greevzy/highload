@@ -13,11 +13,13 @@ spring:
     url: jdbc:postgresql://localhost:5432/highload
     username: postgres
     password: postgres
+    hikari:
+      maximum-pool-size: 150
 
-highload:
+social-network:
   secure-uri:
     - "/user/get/*"
 
 logging:
   level:
-    ru.greevzy.highload: DEBUG
+    ru.greevzy.highload: WARN

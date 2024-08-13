@@ -16,6 +16,8 @@ services:
       - POSTGRES_USER=postgres
       - POSTGRES_DB=highload
     container_name: postgres_highload
+    volumes:
+      - ./postgres:/var/lib/postgresql
     ports:
       - "5432:5432"
     command: postgres -N 1000

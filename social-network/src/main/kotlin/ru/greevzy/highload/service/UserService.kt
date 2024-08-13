@@ -5,6 +5,7 @@ import org.springframework.stereotype.Service
 import org.springframework.util.DigestUtils
 import ru.greevzy.highload.exception.UserNotFoundException
 import ru.greevzy.highload.exception.WrongPasswordException
+import ru.greevzy.highload.mapper.UserMapper
 import ru.greevzy.highload.model.dto.LoginRequestDTO
 import ru.greevzy.highload.model.dto.LoginResponseDTO
 import ru.greevzy.highload.model.dto.RegisterUserRequestDTO
@@ -50,6 +51,13 @@ class UserService(
                 throw WrongPasswordException(userId)
             }
         }
+    }
+
+    fun searchUsers(firstNamePart: String, secondNamePart: String):List<UserDTO> {
+        log.debug("Searching users with params firstNamePart=$firstNamePart%, secondNamePart=$secondNamePart% ..." )
+
+        return userRepository.searchUsersByParams("$firstNamePart%", "$secondNamePart%")
+            .map { UserMapper.entityToDto(it) }
     }
 
     @Transactional
